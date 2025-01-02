@@ -1,3 +1,8 @@
 {
-  "version": "1.0"
+  "currentversion": "1.0",
+  "pastversions": {
+    "0.0": {
+      "urgent": true
+    }
+  }
 }
