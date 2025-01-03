@@ -35,8 +35,9 @@ name = name.innerText.trim().toUpperCase();
   let badges = [...document.querySelectorAll(".Vanity-page--clubIcon")]
     .flatMap(b => [...b.classList])
     .filter(cls => cls.startsWith("milestone-v"))
-    .map(cls => cls.replace("milestone-", ""))
-    .filter(b => ["v10", "v25", "v50", "v100", "v250", "v500", "v1000"].includes(b));
+    .map(cls => cls.replace("milestone-v", ""))
+		.map(badge => badge + "v")
+    .filter(b => ["10v", "25v", "50v", "100v", "250v", "500v", "1000v"].includes(String(b)))
 
   return { 
     id, 
@@ -273,7 +274,7 @@ createPreferencesPopup(yearsWithParkruns)
     // Running badges
     const runningBadges =
       test(
-        [24, 49, 99, 249, 499, 999]
+        [9, 24, 49, 99, 249, 499, 999]
           .map((index) => getBadge(index, `${index + 1}r`))
           .filter(Boolean),
       ) || []
@@ -401,12 +402,11 @@ createPreferencesPopup(yearsWithParkruns)
       </div>
   <div style="font-size: 73px">Lets look at some of your achievements</div>
   <div style="display: flex; gap: 50px; align-content: center; flex-wrap: wrap; justify-content: center;">
-      ${badges
-        .map(
-          (item) => `<div style="font-family: 'Montserrat', sans-serif; line-height: 1.5; text-align: center; box-sizing: border-box; width: 149px; height: 149px; background: center/contain no-repeat; vertical-align: middle; display: inline-block; font-size: 0; overflow: hidden; margin: 0 5px; color: #ffa300;"></div>`,
+      ${badges.map(
+          (item) => `<div id="badgeelem" badge="${item}" style="font-family: 'Montserrat', sans-serif; line-height: 1.5; text-align: center; box-sizing: border-box; width: 149px; height: 149px; contain: no-repeat; vertical-align: middle; display: inline-block; font-size: 0; overflow: hidden; margin: 0 5px; color: #ffa300;"></div>`,
         )
         .join("")} </div></div> `
-
+console.log(badges)
     function htmlToImage(htmlString) {
       return new Promise((resolve, reject) => {
         if (!htmlString) return reject("HTML string is empty.")
@@ -421,13 +421,21 @@ createPreferencesPopup(yearsWithParkruns)
         element.appendChild(footer)
         if (!element) return reject("Failed to create DOM element.")
 
-        element.style.width = widthelement + "px"
-        element.style.height = `${heightelement}px`
-        element.style.top = "-999999999px"
+element.style.width = widthelement + "px";
+element.style.height = `${heightelement}px`;
+element.style.top = "-999999999px";
+
+const badges = element.querySelectorAll("#badgeelem"); // querySelectorAll returns a NodeList
+
+if (badges.length > 0) {
+    // Use forEach on NodeList (make sure to loop properly)
+    badges.forEach((badge) => {
+        badge.style.backgroundImage = 'url("https://haveniscool.github.io/parkrunwrapped/images/badges/25r.svg")';
+    });
+}
 
         // Temporarily add the element to the DOM
         document.body.appendChild(element)
-
         // Load html2canvas and capture the full content
         const script = document.createElement("script")
         script.src =
@@ -441,6 +449,7 @@ createPreferencesPopup(yearsWithParkruns)
             allowTaint: true,
             width: widthelement, // Explicitly set the width
             height: heightelement,
+            cacheBust: false
           })
             .then((canvas) => {
               document.body.removeChild(element)
