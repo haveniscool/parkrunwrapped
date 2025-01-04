@@ -885,4 +885,4 @@ const stylebutton = "position: absolute; padding: 10px; color: #fff; border: 0; 
   }
 }
 }
-startwrapped();
+startWrapped();
