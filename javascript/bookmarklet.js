@@ -1,3 +1,4 @@
+function startWrapped();
 const isrunning = document.body.querySelector("#isrunning")
 let runcheck1 = true
 
@@ -883,3 +884,5 @@ const stylebutton = "position: absolute; padding: 10px; color: #fff; border: 0; 
     }
   }
 }
+}
+startwrapped();
