@@ -1,4 +1,3 @@
-const test = (t) => t ?? null
 const isrunning = document.body.querySelector("#isrunning")
 let runcheck1 = true
 
@@ -35,6 +34,7 @@ if (!runcheck2) {
 }
 
 if (runcheck1 && runcheck2) {
+	const test = (t) => t ?? null
   const isrunningnow = Object.assign(document.createElement("div"), {
     id: "isrunning",
     style: "visibility: hidden",
