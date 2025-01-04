@@ -756,7 +756,7 @@ function createCarousel() {
 
  
   
-  let vars = [minutes, fastest, agegrade, distance, badgeselement, parkruns];
+  let vars = [minutes, fastest, agegrade, distance, badgeselement, parkruns].filter(inner => inner!=="");
 
   let imagesLoaded = 0
 
