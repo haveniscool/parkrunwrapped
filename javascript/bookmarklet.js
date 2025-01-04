@@ -1,4 +1,4 @@
-function startWrapped();
+function startWrapped() {
 const isrunning = document.body.querySelector("#isrunning")
 let runcheck1 = true
 
