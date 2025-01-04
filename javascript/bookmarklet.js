@@ -183,7 +183,7 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
   <label for="unitSelect">Unit:</label>
   <select id="unitSelect" style="border: 2px solid #E6224B; border-radius: 3px;">
     <option value="0" ${preferences.unit === 0 ? "selected" : ""}>kilometers</option>
-    <option value="1" ${preferences.unit === 1 ? "selected" : ""}>k=miles</option>
+    <option value="1" ${preferences.unit === 1 ? "selected" : ""}>miles</option>
   </select>
   <br><br>
     <label for="BADGES" style="font-size: 12px">
@@ -194,7 +194,7 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
   <fieldset>
     <legend>Watermark:</legend>
     <label style="font-size: 12px" for="NAMECHECK">
-      Name: <input type="checkbox" id="NAMECHECK" ${preferences.watermark.name ? "checked" : ""}>
+      Name: <input type="checkbox" id="NAMECHECKs" ${preferences.watermark.name ? "checked" : ""}>
     </label><br>
 
     <label style="font-size: 12px" for="IDCHECK">
@@ -213,13 +213,14 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
         const yearSelect = form.querySelector("#yearSelect")
         const unitSelect = form.querySelector("#unitSelect")
         const showbadges = form.querySelector("#BADGES")
-        const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+        const NAMECHECK = form.querySelector('#NAMECHECKs')
+        const IDCHECK = form.querySelector("#IDCHECK")
         preferences = {
           year: yearSelect.value === "all" ? 0 : +yearSelect.value,
           unit: +unitSelect.value,
           watermark: {
-            name: checkboxes[0].checked,
-            ids: checkboxes[1].checked,
+            name: NAMECHECK.checked,
+            ids: IDCHECK.checked,
           },
           showbadges: showbadges.checked,
         }
@@ -538,9 +539,10 @@ if (!preferences.showbadges) {
 
 // Now, badges contains the desired filtered array
 
-          const debugging = true
+          const debugging = false
           if (debugging) {
 console.log({multiplier, parkrunsattended, locationsattended, topparkrun, topparkrunattendance, fastestagegrade, avgagegrade, totalminutes, comparison, fastestEvent, fastestparkrunlocation, fastestTime, fastestparkrundate, totaldistance, badges, preferences})
+console.log(preferences.watermark)
 }
           let widthelement = 1079 * 1.5
           let heightelement = 1423.5 * 1.5
@@ -646,7 +648,7 @@ element.style.position = 'relative'; // Ensure positioning is relative for child
 
               // Create the watermark footer and append it
               const footer = document.createElement("div")
-   let footertext = `${preferences.watermark.name && userresults.name ? userresults.name + " " : ""}${preferences.watermark.ids && userresults.id ? userresults.id : ""}`;
+   let footertext = `${preferences.watermark.name && userresults.name ? userresults.name : ""}${preferences.watermark.ids && userresults.id ? userresults.id : ""}`;
 if (measureTextWidth(footertext, "35px Gabarito") > widthelement) footertext = "";
 
 
