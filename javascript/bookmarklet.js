@@ -159,7 +159,10 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
         showbadges: false,
       }
 
-      form.innerHTML = `<form id="parkrunForm">
+      form.innerHTML = `
+       <p style="font-size: 10px; margin-top: 5px; color: #E6224B"> If you are experiencing an Error, go to <a style="color: #E6224B; text-decoration: underline;" href="https://form.jotform.com/parkrunwrapped/errorreport">https://form.jotform.com/parkrunwrapped/errorreport</a></p>
+       
+        <form id="parkrunForm">
   <label for="yearSelect">Create Unofficial Parkrun Wrapped for:</label>
   <select id="yearSelect" style="border: 2px solid #E6224B; border-radius: 3px;">
     ${years
@@ -222,7 +225,7 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
         resolve(preferences)
         popup.remove()
       }
-
+ 
       popup.append(form, submit)
       document.body.appendChild(popup)
     })
@@ -752,10 +755,8 @@ function createCarousel() {
 
  
   
-  let vars1 = [minutes, fastest, agegrade, distance, badgeselement, parkruns];
+  let vars = [minutes, fastest, agegrade, distance, badgeselement, parkruns];
 
-  let vars = [badgeselement];
-  // Use a counter to track image loading
   let imagesLoaded = 0
 
   // Promise for each image to track when all are loaded
