@@ -156,7 +156,7 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
         year: "all",
         unit: 0,
         watermark: { name: true, ids: false },
-        showbadges: true,
+        showbadges: false,
       }
 
       form.innerHTML = `<form id="parkrunForm">
@@ -208,6 +208,7 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
       submit.onclick = () => {
         const yearSelect = form.querySelector("#yearSelect")
         const unitSelect = form.querySelector("#unitSelect")
+        const showbadges = form.querySelector("#BADGES")
         const checkboxes = form.querySelectorAll('input[type="checkbox"]')
         preferences = {
           year: yearSelect.value === "all" ? 0 : +yearSelect.value,
@@ -216,7 +217,7 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
             name: checkboxes[0].checked,
             ids: checkboxes[1].checked,
           },
-          showbadges: checkboxes[2],
+          showbadges: showbadges.checked,
         }
         resolve(preferences)
         popup.remove()
@@ -486,22 +487,56 @@ let comparison = ""
             test(Math.round(yearresults.length * multiplier)) || 0
             
           let distancecomparison = ""
-          
-            distancecomparison = test(getDistanceComparison(totaldistance)) || ""
-          const badges = test(
-            (preferences.year === 0
-              ? [
-                  ...runningBadges.map((badge) => badge),
-                  ...userresults.badges.map((badge) => badge),
-                ]
-              : runningBadges.map((badge) => badge)
-            )
-              .filter((badge) => badge !== "10v")
-              .filter((badge) => badge !== "10r"),
-          )
+        let badges = preferences.year === 0
+  ? [
+      ...runningBadges.map((badge) => badge),
+      ...userresults.badges.map((badge) => badge),
+    ]
+  : runningBadges.map((badge) => badge);
+
+
+
+// Function to add lower-level badges
+const addLowerLevelBadges = (badges) => {
+  // Create a set for faster lookups
+  const badgeSet = new Set(badges);
+  const resultBadges = [...badges];
+
+  badges.forEach((badge) => {
+    if (badge.includes("v")) {
+      // Extract the numeric part of the badge (e.g., "1000" from "1000v")
+      const value = parseInt(badge, 10);
+
+      // Check which lower-level badges need to be added
+      const lowerBadges = ["500v", "250v", "100v", "50v", "25v", "10v"];
+      lowerBadges.forEach((lowerBadge) => {
+        const lowerValue = parseInt(lowerBadge, 10);
+
+        // Add the lower badge if the value is smaller and not already added
+        if (value > lowerValue && !badgeSet.has(lowerBadge)) {
+          resultBadges.push(lowerBadge);
+        }
+      });
+    }
+  });
+
+  return resultBadges;
+};
+
+// Add lower-level badges if any
+badges = addLowerLevelBadges(badges);
+if (!preferences.showbadges) {
+  // Filter out "10v" and "10r" badges
+  badges = badges.filter((badge) => badge !== "10v" && badge !== "10r");
+}
+// Now, badges contains the desired array including lower-level badges for "v" badges
+
+
+// Now, badges contains the desired filtered array
+
           const debugging = true
           if (debugging) {
-console.log({multiplier, parkrunsattended, locationsattended, topparkrun, topparkrunattendance, fastestagegrade, avgagegrade, totalminutes, comparison, fastestEvent, fastestparkrunlocation, fastestTime, fastestparkrundate, totaldistance, badges})
+console.log({multiplier, parkrunsattended, locationsattended, topparkrun, topparkrunattendance, fastestagegrade, avgagegrade, totalminutes, comparison, fastestEvent, fastestparkrunlocation, fastestTime, fastestparkrundate, totaldistance, badges, preferences})
 }
           let widthelement = 1079 * 1.5
           let heightelement = 1423.5 * 1.5
@@ -603,6 +638,7 @@ console.log({multiplier, parkrunsattended, locationsattended, topparkrun, toppar
               const wrapper = document.createElement("div")
               wrapper.innerHTML = htmlString
               const element = wrapper.firstElementChild
+element.style.position = 'relative'; // Ensure positioning is relative for children to be positioned correctly
 
               // Create the watermark footer and append it
               const footer = document.createElement("div")
@@ -630,12 +666,12 @@ badges.forEach(badge => {
   const imageUrl = `https://haveniscool.github.io/parkrunwrapped/images/badges/${badge.getAttribute("badge")}.svg`;
   Object.assign(badge.style, {
     backgroundImage: `url(${imageUrl})`,
-    backgroundSize: "contain",
+    backgroundSize: "190px 190px",
+    backgroundClip: "border-box",
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
+    backgroundPosition: "50% 50%",
     width: "190px",
     height: "190px",
-    aspectRatio: "1 / 1",
     overflow: "visible",
   });
 });
@@ -716,8 +752,9 @@ function createCarousel() {
 
  
   
+  let vars1 = [minutes, fastest, agegrade, distance, badgeselement, parkruns];
 
-  let vars = [minutes, fastest, agegrade, distance, badgeselement, parkruns];
+  let vars = [badgeselement];
   // Use a counter to track image loading
   let imagesLoaded = 0
 
