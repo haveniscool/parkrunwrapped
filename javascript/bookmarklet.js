@@ -646,7 +646,7 @@ element.style.position = 'relative'; // Ensure positioning is relative for child
 
               // Create the watermark footer and append it
               const footer = document.createElement("div")
-   let footertext = `${preferences.watermark.name && userresults.name ? userresults.name : ""}${preferences.watermark.ids && userresults.id ? userresults.id : ""}`;
+   let footertext = `${preferences.watermark.name && userresults.name ? userresults.name + " " : ""}${preferences.watermark.ids && userresults.id ? userresults.id : ""}`;
 if (measureTextWidth(footertext, "35px Gabarito") > widthelement) footertext = "";
 
 
