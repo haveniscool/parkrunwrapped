@@ -243,38 +243,38 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
                 )
 
           // functions
-          const getRandomTimeComparison = (timeInMinutes) => {
-            const times = [
-              { "you could've binged every season of Friends": 5321 },
-              { "you could've watched the marathon world record": 121.65 },
-              { "you could've binged Game of Thrones": 3952.3 },
-              { "you could've watched the full Star Wars saga": 1617 },
-              {
-                "you could've completed the entire Lord of the Rings trilogy": 683,
-              },
-              { "the ISS orbited the earth": 90 },
-              { "the Apollo 11 could've flown to the moon and back": 11719 },
-              { "you could've brushed your teeth": 2 },
-              { "you played the shortest possible game of chess": 0.25 },
-              {
-                "you could've watched the longest game of professional American football": 4960,
-              },
-              { "you could've played a game of football": 90 },
-              { "you could've watched Barbie (2024) and Oppenheimer": 294.15 },
-              { "you could've watched The Muppet Movie": 97 },
-            ]
-            return (
-              "In that time " +
-              times
-                .map((item) => {
-                  const [text, value] = Object.entries(item)[0]
-                  return { text, value: Math.round(timeInMinutes / value) }
-                })
-                .filter(({ value }) => value > 1)
-                .map(({ text, value }) => `${text} ${value} times`)
-                .at(Math.floor(Math.random() * times.length))
-            )
-          }
+const getRandomTimeComparison = (timeInMinutes) => {
+  const times = [
+    { "you could've binged every season of Friends": 5321 },
+    { "you could've watched the marathon world record": 121.65 },
+    { "you could've binged Game of Thrones": 3952.3 },
+    { "you could've watched the full Star Wars saga": 1617 },
+    { "you could've completed the entire Lord of the Rings trilogy": 683 },
+    { "the ISS orbited the earth": 90 },
+    { "the Apollo 11 could've flown to the moon and back": 11719 },
+    { "you could've brushed your teeth": 2 },
+    { "you played the shortest possible game of chess": 0.25 },
+    { "you could've watched the longest game of professional American football": 4960 },
+    { "you could've played a game of football": 90 },
+    { "you could've watched Barbie (2024) and Oppenheimer": 294.15 },
+    { "you could've watched The Muppet Movie": 97 }
+  ];
+
+  // Ensure there's always at least one valid comparison by filtering
+  const validComparisons = times
+    .map((item) => {
+      const [text, value] = Object.entries(item)[0];
+      return { text, value: Math.round(timeInMinutes / value) };
+    })
+    .filter(({ value }) => value > 0);  // Make sure we always have a positive value
+
+  // Pick a random comparison from the filtered list
+  return "In that time " + validComparisons
+    .map(({ text, value }) => `${text} ${value} times`)
+    .at(Math.floor(Math.random() * validComparisons.length));
+};
+
+
 
           const plural = (num, caps = false) =>
             num === 1 ? "" : caps ? "S" : "s"
@@ -429,8 +429,8 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
                 ),
               ),
             ) || 0
-
-          let comparison = test(getRandomTimeComparison(totalminutes)) || ""
+let comparison = ""
+           comparison = test(getRandomTimeComparison(totalminutes)) || ""
 
           const totalMinutesArray =
             test(
@@ -484,8 +484,10 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
           // Distance and badge list
           const totaldistance =
             test(Math.round(yearresults.length * multiplier)) || 0
-          const distancecomparison =
-            test(getDistanceComparison(totaldistance)) || ""
+            
+          let distancecomparison = ""
+          
+            distancecomparison = test(getDistanceComparison(totaldistance)) || ""
           const badges = test(
             (preferences.year === 0
               ? [
@@ -497,7 +499,10 @@ width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
               .filter((badge) => badge !== "10v")
               .filter((badge) => badge !== "10r"),
           )
-
+          const debugging = true
+          if (debugging) {
+console.log({multiplier, parkrunsattended, locationsattended, topparkrun, topparkrunattendance, fastestagegrade, avgagegrade, totalminutes, comparison, fastestEvent, fastestparkrunlocation, fastestTime, fastestparkrundate, totaldistance, badges})
+}
           let widthelement = 1079 * 1.5
           let heightelement = 1423.5 * 1.5
           const divstyle = `max-width: ${widthelement}px; position: absolute; min-width: ${widthelement}px; min-height: ${heightelement}px; max-height: ${heightelement}px; align-items: center; text-align: center; padding-left: 82px; padding-right: 82px; font-family: Gabarito; color: #fff;`
@@ -666,6 +671,33 @@ badges.forEach(badge => {
               document.head.appendChild(script)
             })
           }
+          const style = document.createElement('style');
+style.innerHTML = `
+  .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate 2s linear infinite;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 6px solid rgba(0, 0, 0, 0.3);
+    border-top-color: #000;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+`;
+
+document.head.appendChild(style);
+
 function createCarousel() {
   const carouselContainer = document.createElement("div")
   carouselContainer.style =
@@ -677,15 +709,15 @@ function createCarousel() {
   const imagesWrapper = document.createElement("div")
   imagesWrapper.style = "display: flex; transition: transform .3s ease-in-out; width: fit-content;"
 
-  let vars = [
-    minutes,
-    fastest,
-    agegrade,
-    distance,
-    badgeselement,
-    parkruns,
-  ]
 
+  const circle = document.createElement("div");
+  circle.classList.add("circle");
+  carousel.appendChild(circle);
+
+ 
+  
+
+  let vars = [minutes, fastest, agegrade, distance, badgeselement, parkruns];
   // Use a counter to track image loading
   let imagesLoaded = 0
 
@@ -705,7 +737,10 @@ function createCarousel() {
             // Check if all images are loaded
             if (imagesLoaded === vars.length) {
               // All images are loaded, proceed
+              
               carousel.appendChild(imagesWrapper)
+                            circle.remove(); // Remove loading message once images are done
+
             }
           }
         })
