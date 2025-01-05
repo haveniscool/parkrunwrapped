@@ -404,8 +404,6 @@ const getRandomTimeComparison = (timeInMinutes) => {
 
   const comparisonResult = getAmountComparison(distance, randomEntry.value);
 
-  console.log("Comparison Ratio:", comparisonResult);
-
   return `That's ${comparisonResult.toFixed(2)} times the ${randomEntry.category}${
     randomEntry.category === "distance" ? " from " : " of "
   }${randomEntry.name}`;
