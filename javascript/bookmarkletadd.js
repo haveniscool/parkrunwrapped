@@ -5,7 +5,6 @@ window.addEventListener("load", (event) => {
         const errormessage = document.getElementById("errormessage")
         errormessage.classList += "show";
     } else {
-    const sendto = document.getElementById("countries").value
     window.open(`https://www.parkrun.org.uk/parkrunner/${parkrunid}/5k`)
 }   
     }
