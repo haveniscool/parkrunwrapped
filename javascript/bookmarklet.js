@@ -677,7 +677,7 @@ if (measureTextWidth(footertext, "35px Gabarito") > widthelement) footertext = "
 
  const badges = element.querySelectorAll("#badgeelem");
 badges.forEach(badge => {
-  const imageUrl = `https://haveniscool.github.io/parkrunwrapped/images/badges/${badge.getAttribute("badge")}.svg`;
+  const imageUrl = `https://parkrunwrapped.havenline.art/images/badges/${badge.getAttribute("badge")}.svg`;
   Object.assign(badge.style, {
     backgroundImage: `url(${imageUrl})`,
     backgroundSize: "190px 190px",
