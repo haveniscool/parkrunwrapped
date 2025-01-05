@@ -404,9 +404,9 @@ const getRandomTimeComparison = (timeInMinutes) => {
 
   const comparisonResult = getAmountComparison(distance, randomEntry.value);
 
-  return `That's ${comparisonResult.toFixed(2)} times the ${randomEntry.category}${
+  return test(comparisonResult) ? `That's ${comparisonResult.toFixed(2)} times the ${randomEntry.category}${
     randomEntry.category === "distance" ? " from " : " of "
-  }${randomEntry.name}`;
+  }${randomEntry.name}` : "";
 };
 
           const multiplier = (preferences.unit === 0 ? 5 : 3.10686) || 0
@@ -531,7 +531,7 @@ let comparison = " "
             test(Math.round(yearresults.length * multiplier)) || 0
             
           let distancecomparison = " "
-          distancecomparison = getDistanceComparison()
+          distancecomparison = getDistanceComparison(totaldistance)
         let badges = preferences.year === 0
   ? [
       ...runningBadges.map((badge) => badge),
