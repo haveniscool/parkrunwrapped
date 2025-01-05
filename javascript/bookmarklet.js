@@ -13,7 +13,33 @@ style.innerHTML = `
     border: 6px solid rgba(0, 0, 0, 0.3);
     border-top-color: #000;
   }
+  .climate-crisis-<uniquifier> {
+  font-family: "Climate Crisis", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "YEAR" 1979;
+}
 
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+.lexend-<uniquifier> {
+  font-family: "Lexend", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 400 to 900
+
+.gabarito-<uniquifier> {
+  font-family: "Gabarito", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
   @keyframes rotate {
     0% {
       transform: translate(-50%, -50%) rotate(0deg);
@@ -172,7 +198,7 @@ if (resultstable.length) {
   function createPreferencesPopup(years) {
     return new Promise((resolve) => {
       const popup = document.createElement("div")
-      popup.style = `font-family: Gabarito; position: fixed; top: 50%; left: 50%; 
+      popup.style = `font-family: "Gabarito", serif; position: fixed; top: 50%; left: 50%; 
 transform: translate(-50%, -50%); background: #fff; padding: 20px;
 border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, .2); z-index: 9999;
 width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
@@ -563,12 +589,12 @@ console.log(preferences.watermark)
 }
           let widthelement = 1079 * 1.5
           let heightelement = 1423.5 * 1.5
-          const divstyle = `max-width: ${widthelement}px; position: absolute; min-width: ${widthelement}px; min-height: ${heightelement}px; max-height: ${heightelement}px; align-items: center; text-align: center; padding-left: 82px; padding-right: 82px; font-family: Gabarito; color: #fff;`
+          const divstyle = `max-width: ${widthelement}px; position: absolute; min-width: ${widthelement}px; min-height: ${heightelement}px; max-height: ${heightelement}px; align-items: center; text-align: center; padding-left: 82px; padding-right: 82px; font-family: "Gabarito", serif; color: #fff;`
           const flexcolstyle =
             "display: flex; flex-direction: column; justify-content: center;"
           const font36style = `text-align: left; font-size: 36px;`
           const bigletterstyle =
-            "font-family: Bernoru; font-size: 202px; font-weight: 900;"
+            `font-family: "Climate Crisis" serif; font-size: 202px; font-weight: 900;`
           const smallletterstyle = "font-size: 73px;"
 
           let minutes = `<div style="${divstyle} ${flexcolstyle}  row-gap: 208px; background-color: #FFA300; font-size: 73px;">
@@ -629,7 +655,7 @@ console.log(preferences.watermark)
               <div style="${flexcolstyle} align-items: center;">
                   <div>Your top Parkrun was</div>
                   <div style="color: #EA0B86; font-size: ${topparkrun.length < 20 ? "223px" : "150px"}; font-weight: 900;">${topparkrun}</div>
-                  <div>Where you attended <span style="color: #EA0B86;; font-weight: 900;">${topparkrunattendance}</span> Parkrun${plural(topparkrunattendance)}</div>
+                  <div>Where you attended <span style="color: #EA0B86; font-weight: 900;">${topparkrunattendance}</span> Parkrun${plural(topparkrunattendance)}</div>
               </div>
           </div>`
 
@@ -665,16 +691,16 @@ element.style.position = 'relative';
 
               const footer = document.createElement("div")
    let footertext = `${preferences.watermark.name && userresults.name ? userresults.name : ""} ${preferences.watermark.ids && userresults.id ? userresults.id: ""}`;
-if (measureTextWidth(footertext, "35px Gabarito") > widthelement) footertext = "";
+if (measureTextWidth(footertext, `35px "Gabarito", serif;`) > widthelement) footertext = "";
 
 
-              footer.style = `color: #fff; font-family: Gabarito; font-size: 35px; width: 500%; opacity: .7; position: absolute; bottom: 10px; text-align: center`
+              footer.style = `color: #fff; font-family: "Gabarito", serif; font-size: 35px; width: 500%; opacity: .7; position: absolute; bottom: 10px; text-align: center`
               element.appendChild(footer)
               footer.innerText = footertext
               const header = document.createElement("div")
               header.innerText =
                 "Unofficial Parkrun Wrapped  • www.parkrunwrapped.com"
-              header.style = `color: #fff; font-family: Bernoru; font-size: 25px; opacity: .3; position: absolute; top: 10px; text-align: center; width: 300%`
+              header.style = `color: #fff; font-family: "Climate Crisis" serif; font-size: 25px; opacity: .3; position: absolute; top: 10px; text-align: center; width: 300%`
               element.appendChild(header)
               if (!element) return reject("Failed to create DOM element.")
 
