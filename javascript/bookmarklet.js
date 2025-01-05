@@ -66,6 +66,7 @@ if (!runcheck2) {
 }
 
 if (runcheck1 && runcheck2) {
+	window.alert("Due to a bug in Safari's code, it is impossible to perform some of the actions requiered to run this program. This is also the case for Safari Mobile and Chrome Mobile. If you are using any of those browsers you have to use a different search engine.")
 	const test = (t) => t ?? null
   const isrunningnow = Object.assign(document.createElement("div"), {
     id: "isrunning",
@@ -729,9 +730,7 @@ badges.forEach(badge => {
                   .then((canvas) => {
 			  
                     document.body.removeChild(element)
-			const ctx = canvas.getContext('2d');
-const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-resolve(imageData)
+			resolve(canvas.toDataUrl())
 
                   })
                   .catch((error) => {
