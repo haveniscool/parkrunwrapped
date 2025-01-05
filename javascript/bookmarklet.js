@@ -107,7 +107,6 @@ if (resultstable.length) {
 
           let splitnumber = cells[4].innerText.split(":").map(Number)
           let [h, mi, s] = (splitnumber.length == 2) ? [0, splitnumber[0], splitnumber[1]] : [splitnumber[2], splitnumber[1], splitnumber[0]]
-
           return {
             event: cells[0].innerText.trim(),
             date: new Date(y, m - 1, d),
@@ -120,6 +119,7 @@ if (resultstable.length) {
         })
         .filter(Boolean)
     }
+
     let badges = []
     let badgestable = [...document.querySelectorAll(".Vanity-page--clubIcon")]
     if (badgestable) {
@@ -385,22 +385,29 @@ const getRandomTimeComparison = (timeInMinutes) => {
           const agegrades =
             test(yearresults.map((result) => result.ageGrade)) || []
 
-          // Simplified badge retrieval
-          const getBadge = (index, badge) =>
-            userresults.results[index] &&
-            (preferences.year === 0 ||
-              userresults.results[index].date.getFullYear() ===
-                preferences.year)
-              ? badge
-              : null // Return null or any other default value if the condition isn't met
+const getBadge = (index, badge) => {
+  const result = userresults.results[index];
+  // Check if result exists and if the year matches preferences.year
+  if (result && (preferences.year === 0 || result.date.getFullYear() === preferences.year)) {
+    return badge;  // Return badge if conditions are met
+  }
+  return null;  // Return null if conditions aren't met
+};
 
-          // Running badges
-          let runningBadges =
-            test(
-              [9, 24, 49, 99, 249, 499, 999]
-                .map((index) => getBadge(index, `${index + 1}r`))
-                .filter(Boolean),
-            ) || []
+// Sort results by date
+const sortedResults = userresults.results.sort((a, b) => {
+  return new Date(a.date) - new Date(b.date); // Sort in ascending order (earliest date first)
+});
+
+// Running badges for specific indices
+let runningBadges = test(
+  [9, 24, 49, 99, 249, 499, 999] // List of indices to check
+    .map((index) => getBadge(index, `${index + 1}r`)) // Map through indices and get the badges
+    .filter(Boolean), // Filter out any null values
+) || [];
+
+console.log(runningBadges); // For debugging purposes
+
 
           // Parkrun stats
           const parkrunsattended = test(yearresults.length) || 0
@@ -605,7 +612,7 @@ console.log(preferences.watermark)
               ? ""
               : `<div id="parkruns" style="${divstyle} ${flexcolstyle} row-gap: 138px; background-color: #2B2C2E; font-size: 103px;">
               <div style="${flexcolstyle} align-items: center;">
-                  <div>${preferences.year == 0 ? "Y" : "In y" + preferences.year}ou attended <span style="color: #EA0B86; font-weight: 900;">${parkrunsattended}</span></div>
+                  <div>${preferences.year == 0 ? "Y" : "In " + preferences.year + " y"}ou attended <span style="color: #EA0B86; font-weight: 900;">${parkrunsattended}</span></div>
                   <div>Parkrun${plural(parkrunsattended)} At</div>
                   <div><span style="color: #EA0B86; font-weight: 900;">${locationsattended}</span> location${plural(locationsattended)}</div>
               </div>
@@ -617,7 +624,7 @@ console.log(preferences.watermark)
           </div>`
 
           let badgeselement =
-            badges == []
+            badges.length == 0
               ? ""
               : `
   <div id="volunteer"
