@@ -729,12 +729,9 @@ badges.forEach(badge => {
                   .then((canvas) => {
 			  
                     document.body.removeChild(element)
-canvas.toBlob(function(blob) {
-
-		
-	  const url = URL.createObjectURL(blob);
-		resolve(url)
-}, 'image/png');
+			const ctx = canvas.getContext('2d');
+const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+resolve(imageData)
 
                   })
                   .catch((error) => {
