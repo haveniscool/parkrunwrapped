@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="bookmarkletadd.js"></script>
+
+</head>
+<body>
+  <div id="welcome_page" class="page">
+    <div id="welcome-bg"></div>
+    <div class="informationbox" id="titlebox">
+      <p class="body_title">YOUR 2024 UNOFFICIAL</p>
+      <div id="logo">
+        <p>PARKRUN</p>
+        <p>WRAPPED</p>
+      </div>
+    </div>
+  </div>
+  <div id="body_page" class="page">
+    <div class="informationbox" id="summary1">
+      <p class="body_title">create shareable images summarizing your year
+        
+      </p>
+      <div id="imgcontainter">
+        <img src="https://haveniscool.github.io/parkrunwrapped/images/show1.png" alt="Image description">
+        <img src="https://haveniscool.github.io/parkrunwrapped/images/show2.png" alt="Image description">
+        <img src="https://haveniscool.github.io/parkrunwrapped/images/show3.png" alt="Image description">
+      </div>
+    </div>
+
+    <div class="informationbox" id="summary2">
+      <div class="summary2box">
+      <p class="body_title">
+        1. Drag this image to your bookmarks bar
+          <span class="tooltip">
+            <span class="tooltiptext" id="tooltipbookmarklettutorial"></span>
+          </span>
+
+      </p>
+      <a href="#" id="bookmarklet" aria-label="Parkrun Wrapped">
+        <img src="https://haveniscool.github.io/parkrunwrapped/images/bookmarklet.svg" alt="Parkrun Wrapped">
+      </a>
+          </div>
+
+
+    <div class="summary2box">
+      <p class="body_title">2. input your parkrun id         
+        <span class="tooltip">
+        <span class="tooltiptext">This is the id that you were emailed when you created your Parkrun account. <a href="https://support.parkrun.com/hc/en-us/articles/205632182-2-1-How-do-I-access-my-parkrun-profile">More Information</a></span>
+      </span>
+    </p>
+      <input id="parkrunid" type="number" placeholder="000000">
+      <span id="errormessage">Parkrun ID is empty</span>
+      </div>
+
+
+      <div class="summary2box">
+        <p class="body_title">3. put in your home country
+          <span class="tooltip">
+            <span class="tooltiptext">This is used to send you to the right country's result page. If you put in the wrong country, you will most likely get an error page.</span>
+          </span>
+        </p>
+      <select id="countries">
+        <option value="parkrun.com.au">Australia</option>
+        <option value="parkrun.com.at">Austria</option>
+        <option value="parkrun.ca">Canada</option>
+        <option value="parkrun.dk">Denmark</option>
+        <option value="parkrun.co.za">Eswatini/Namibia/South Africa</option>
+        <option value="parkrun.fi">Finland</option>
+        <option value="parkrun.fr">France</option>
+        <option value="parkrun.com.de">Germany</option>
+        <option value="parkrun.ie">Ireland</option>
+        <option value="parkrun.it">Italy</option>
+        <option value="parkrun.jp">Japan</option>
+        <option value="parkrun.lt">Lithuania</option>
+        <option value="parkrun.my">Malasia</option>
+        <option value="parkrun.co.nl">Netherlands</option>
+        <option value="parkrun.co.nz">New Zealand</option>
+        <option value="parkrun.no">Norway</option>
+        <option value="parkrun.pl">Poland</option>
+        <option value="parkrun.sg">Singapore</option>
+        <option value="parkrun.se">Sweeden</option>
+        <option value="parkrun.org.uk">United Kingdom</option>
+        <option value="parkrun.us">United States</option>            
+      </select>
+    </div>
+
+
+    <div class="summary2box">
+      <p class="body_title">
+        3. Press go and click the bookmark in your bookmark bar
+        <span class="tooltip">
+          <span class="tooltiptext" id="dragtobookmarkbar"></span>
+        </span>
+      </p>
+      <button id="gobutton">Go!</button>
+    </div>
+  </div>
+  </div>
+     <div id="footer_page">
+      <a href="./privacypolicy.html">Privacy Policy</a>
+      <a href="https://form.jotform.com/parkrunwrapped/errorreport">Error Report</a>
+      <a href="https://form.jotform.com/parkrunwrapped/contact">Contact</a>
+
+    </div>
+  
+</body>
+</html>
 
