@@ -728,8 +728,9 @@ badges.forEach(badge => {
                 })
                   .then((canvas) => {
                     document.body.removeChild(element)
+			  setTimeout(() => {
                     resolve(canvas.toDataURL())
-
+			  }, 200)
                   })
                   .catch((error) => {
                     console.error("Error during html2canvas rendering:", error)
