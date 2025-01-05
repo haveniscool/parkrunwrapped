@@ -198,7 +198,7 @@ if (resultstable.length) {
   function createPreferencesPopup(years) {
     return new Promise((resolve) => {
       const popup = document.createElement("div")
-      popup.style = `font-family: "Gabarito", serif; position: fixed; top: 50%; left: 50%; 
+      popup.style = `font-family: "Gabarito", sans-serif; position: fixed; top: 50%; left: 50%; 
 transform: translate(-50%, -50%); background: #fff; padding: 20px;
 border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, .2); z-index: 9999;
 width: 80%; max-width: 400px; max-height: 80vh; overflow-y: auto;`
@@ -589,12 +589,12 @@ console.log(preferences.watermark)
 }
           let widthelement = 1079 * 1.5
           let heightelement = 1423.5 * 1.5
-          const divstyle = `max-width: ${widthelement}px; position: absolute; min-width: ${widthelement}px; min-height: ${heightelement}px; max-height: ${heightelement}px; align-items: center; text-align: center; padding-left: 82px; padding-right: 82px; font-family: "Gabarito", serif; color: #fff;`
+          const divstyle = `max-width: ${widthelement}px; position: absolute; min-width: ${widthelement}px; min-height: ${heightelement}px; max-height: ${heightelement}px; align-items: center; text-align: center; padding-left: 82px; padding-right: 82px; font-family: "Gabarito", sans-serif; color: #fff;`
           const flexcolstyle =
             "display: flex; flex-direction: column; justify-content: center;"
           const font36style = `text-align: left; font-size: 36px;`
           const bigletterstyle =
-            `font-family: "Climate Crisis" serif; font-size: 202px; font-weight: 900;`
+            `font-family: "Climate Crisis" sans-serif; font-size: 202px; font-weight: 900;`
           const smallletterstyle = "font-size: 73px;"
 
           let minutes = `<div style="${divstyle} ${flexcolstyle}  row-gap: 208px; background-color: #FFA300; font-size: 73px;">
@@ -673,7 +673,7 @@ console.log(preferences.watermark)
       ${badges
         .map(
           (item) =>
-            `<div id="badgeelem" badge="${item}" style="font-family: 'Montserrat', sans-serif; line-height: 1.5; text-align: center; box-sizing: border-box; vertical-align: middle; display: inline-block; font-size: 0; margin: 0;"></div>`,
+            `<div id="badgeelem" badge="${item}" style="font-family: 'Montserrat', sans-sans-serif; line-height: 1.5; text-align: center; box-sizing: border-box; vertical-align: middle; display: inline-block; font-size: 0; margin: 0;"></div>`,
         )
         .join("")} </div></div> `
 
@@ -691,16 +691,16 @@ element.style.position = 'relative';
 
               const footer = document.createElement("div")
    let footertext = `${preferences.watermark.name && userresults.name ? userresults.name : ""} ${preferences.watermark.ids && userresults.id ? userresults.id: ""}`;
-if (measureTextWidth(footertext, `35px "Gabarito", serif;`) > widthelement) footertext = "";
+if (measureTextWidth(footertext, `35px "Gabarito", sans-serif;`) > widthelement) footertext = "";
 
 
-              footer.style = `color: #fff; font-family: "Gabarito", serif; font-size: 35px; width: 500%; opacity: .7; position: absolute; bottom: 10px; text-align: center`
+              footer.style = `color: #fff; font-family: "Gabarito", sans-serif; font-size: 35px; width: 500%; opacity: .7; position: absolute; bottom: 10px; text-align: center`
               element.appendChild(footer)
               footer.innerText = footertext
               const header = document.createElement("div")
               header.innerText =
                 "Unofficial Parkrun Wrapped  • www.parkrunwrapped.com"
-              header.style = `color: #fff; font-family: "Climate Crisis" serif; font-size: 25px; opacity: .3; position: absolute; top: 10px; text-align: center; width: 300%`
+              header.style = `color: #fff; font-family: "Climate Crisis" sans-serif; font-size: 25px; opacity: .3; position: absolute; top: 10px; text-align: center; width: 300%`
               element.appendChild(header)
               if (!element) return reject("Failed to create DOM element.")
 
