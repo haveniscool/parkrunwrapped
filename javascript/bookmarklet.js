@@ -1,5 +1,10 @@
 function startWrapped() {
 	          const style = document.createElement('style');
+	// Create a link element for Google Fonts
+    const fontLink = document.createElement('link');
+    fontLink.rel = 'stylesheet';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Gabarito:wght@400..900&family=Lexend:wght@100..900&display=swap';
+    document.head.appendChild(fontLink);
 style.innerHTML = `
   .circle {
     position: absolute;
@@ -13,33 +18,7 @@ style.innerHTML = `
     border: 6px solid rgba(0, 0, 0, 0.3);
     border-top-color: #000;
   }
-  .climate-crisis-<uniquifier> {
-  font-family: 'Climate Crisis', serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "YEAR" 1979;
-}
 
-// <uniquifier>: Use a unique and descriptive class name
-// <weight>: Use a value from 100 to 900
-
-.lexend-<uniquifier> {
-  font-family: 'lexend', serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
-// <uniquifier>: Use a unique and descriptive class name
-// <weight>: Use a value from 400 to 900
-
-.gabarito-<uniquifier> {
-  font-family: 'gabarito', serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
   @keyframes rotate {
     0% {
       transform: translate(-50%, -50%) rotate(0deg);
@@ -48,7 +27,6 @@ style.innerHTML = `
       transform: translate(-50%, -50%) rotate(360deg);
     }
   }
-  @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Gabarito:wght@400..900&family=Lexend:wght@100..900&display=swap');
 `;
 
 document.head.appendChild(style);
