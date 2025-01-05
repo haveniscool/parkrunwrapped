@@ -730,7 +730,7 @@ badges.forEach(badge => {
                   .then((canvas) => {
 			  
                     document.body.removeChild(element)
-			resolve(canvas.toDataURL())
+			resolve(canvas.toDataURL('image/png'));
 
                   })
                   .catch((error) => {
