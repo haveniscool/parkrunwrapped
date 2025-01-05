@@ -1,1 +1,377 @@
+/* Figma Styles of your File */
+:root {
+  --original-screen-width: 1520;
+  --green: #75a42e;
+  --black: 43, 44, 46;
+  --pink: #ea0b86;
+  --yellow: #e4e643;
+  --bg-width: 10vw;
+  --top: top;
+  --orange: #ffa300;
+  --red: #e6224b;
+  --teal: #00c8af;
+  --background: #2b2c2e;
+  --hot-pink: #ea0b86;
+  --neon-green: #e4e643;
+  --white: #ffffff;
+  --textcol: #0000007f;
+  --gbav: rgba(255, 255, 255, 0.16);
+  --max: 8px;
+  --gbav-box-shadow: 0px 0px min(3.5vw, calc(var(--max) * 3.5)) 0px
+    rgba(0, 0, 0, 0.05);
+    --bookmarkletimagesize: min(calc(500.5vw / 15.2), calc(500.5 * 951px / 1520));
+}
 
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+#titlebox {
+  animation: float 3s ease-in-out infinite;
+}
+div,
+p {
+  margin: 0;
+}
+
+body {
+  overscroll-behavior: none;
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+  font-family: Gabarito;
+  color: white;
+  text-transform: capitalize;
+}
+.page {
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: min(calc(440vw / 15.2), calc(440 * 951px / 1520))
+    min(calc(100.5vw / 15.2), calc(100.5 * 951px / 1520));
+  row-gap: min(calc(138vw / 15.2), calc(138 * 951px / 1520));
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#welcome_page {
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--yellow), 50%, var(--green));
+}
+#welcome-bg,
+#welcome-bg::before {
+  background-image: url(./shoe.svg);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: -999;
+  background-repeat: repeat;
+  background-position: top left;
+  position: absolute;
+  background-size: var(--bg-width);
+  box-sizing: border-box;
+}
+
+#welcome-bg {
+  opacity: 0.1;
+}
+
+#welcome-bg::before {
+  content: "";
+  background-position-y: calc(var(--bg-width) / 2);
+  background-position-x: calc(var(--bg-width) / 2);
+}
+
+.informationbox {
+
+  padding: min(calc(130vw / 15.2), calc(130 * 951px / 1520));
+  border-radius: min(calc(130vw / 15.2), calc(130 * 951px / 1520));
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  background-color: rgb(var(--black));
+  filter: drop-shadow(0 0 0.75rem #000000);
+  row-gap: 0;
+}
+
+#logo {
+  text-align: center;
+  font-weight: 900;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  height: auto;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    var(--orange),
+    50%,
+    var(--red),
+    90%,
+    var(--orange)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: min(calc(1000vw / 15.2), calc(951000px / 1520));
+  font-size: min(calc(150vw / 15.2), calc(150 * 951px / 1520));
+}
+#Privacypolicy_page {
+  background: linear-gradient(40deg, var(--red), 50%, var(--orange));
+  height: 100%;
+}
+/* Body */
+#body_page {
+
+  background: linear-gradient(90deg, var(--red), 50%, var(--orange));
+}
+.container { 
+  white-space: nowrap; 
+}
+.body_title { 
+  display: inline;
+  text-align: center; 
+  box-sizing: border-box; 
+  margin: 0; 
+  max-width: 100%; 
+  z-index: 1; 
+  width: auto; 
+  height: auto; 
+  font-size: min(calc(50vw / 15.2), calc(50 * 951px / 1520)); 
+}
+
+#imgcontainter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: min(calc(40vw / 15.2), calc(40 * 951px / 1520));
+}
+
+#imgcontainter img {
+  width: calc(100%/3.3);
+  border: 1px solid white;
+  border-radius: min(calc(10vw / 15.2), calc(10 * 951px / 1520));
+  height: min(calc(400vw / 15.2), calc(400 * 951px / 1520));
+  object-fit: cover;
+}
+
+#summary1 {
+  row-gap: min(calc(20vw / 15.2), calc(20 * 951px / 1520));
+}
+#summary2 {
+  text-align: left !important;
+  width: 100%;
+  row-gap: min(calc(200vw / 15.2), calc(200 * 951px / 1520));
+}
+.summary2box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  row-gap: min(calc(10vw / 15.2), calc(10 * 951px / 1520));
+}
+
+#parkrunid {
+  border: min(calc(5vw / 15.2), calc(5 * 951px / 1520)) solid #cdcdcd;
+}
+
+#countries {
+  border: min(calc(5vw / 15.2), calc(5 * 951px / 1520)) solid #cdcdcd;
+}
+
+#gobutton {
+  border: min(calc(5vw / 15.2), calc(5 * 951px / 1520)) solid #5c8124;
+  background: var(--green);
+  color: rgba(0, 0, 0, 0.58);
+  transition: 0.5s;
+}
+#gobutton,
+#countries,
+#parkrunid {
+  border-radius: min(calc(30vw / 15.2), calc(30 * 951px / 1520));
+  width: min(calc(500vw / 15.2), calc(500 * 951px / 1520));
+  height: min(calc(100vw / 15.2), calc(100 * 951px / 1520));
+  font-size: min(calc(40vw / 15.2), calc(40 * 951px / 1520));
+  text-align: center;
+  font-family: Gabarito;
+  font-weight: 900;
+}
+
+#gobutton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+
+#bookmarklet span {
+  visibility: hidden;
+}
+#bookmarklet img {
+  width: 75%;
+}
+#bookmarklet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
+
+/* footer */
+#footer_page {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Ensures horizontal centering */
+  align-items: center;     /* Ensures vertical centering */
+  column-gap: min(calc(40vw / 15.2), calc(40 * 951px / 1520));
+  text-align: center;
+  background: rgb(var(--black));
+  padding: 20px 0;
+}
+
+#footer_page a {
+  color: white;
+}
+/* Tooltip container */
+.tooltip {
+  margin-left: 10px;
+  height: min(calc(50.5vw / 15.2), calc(50.5 * 951px / 1520));
+  width: min(calc(50.5vw / 15.2), calc(50.5 * 951px / 1520));
+  background-image: url("https://haveniscool.github.io/parkrunwrapped/images/Questionmark.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: min(calc(10vw / 15.2), calc(10 * 951px / 1520));
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 0;
+  bottom: 125%;
+  left: 50%;
+  margin-left: calc(var(--bookmarkletimagesize)/-2);
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  /* Initially hidden */
+  opacity: 0;
+  visibility: hidden; /* Ensure the tooltip is hidden */
+  transition: opacity 0.5s ease-in-out; /* Smooth fade in/out */
+  font-size: min(calc(30vw / 15.2), calc(30 * 951px / 1520));
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border: 5px solid #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  opacity: 1;
+  visibility: visible; /* Tooltip becomes visible when hovered */
+}
+
+.tooltip a {
+  color: #fff;
+  font-style: italic;
+}
+
+
+#tooltipbookmarklettutorial {
+  height: var(--bookmarkletimagesize);
+  padding: 0;
+  width: var(--bookmarkletimagesize);
+  background-image: url("https://haveniscool.github.io/parkrunwrapped/images/example1.gif");
+}
+#dragtobookmarkbar {
+  padding: 0;
+  height: var(--bookmarkletimagesize);
+  width: var(--bookmarkletimagesize);
+  background-image: url("https://haveniscool.github.io/parkrunwrapped/images/example2.gif")}
+#errormessage {
+  font-size: min(calc(30vw / 15.2), calc(30 * 951px / 1520));
+visibility: hidden;
+}
+#errormessage[class=show] {
+  visibility: visible;
+}
+#Privacypolicy {
+  text-align: left;
+}
+
+#Privacypolicy {
+row-gap: 0px;
+text-transform:none;
+
+margin: 0;
+}
+#Privacypolicy p {
+  margin: 0;
+font-size: min(calc(30vw / 15.2), calc(30 * 951px / 1520));
+}
+#Privacypolicy h5 {
+  margin-block-end: 3px;
+}
+#Privacypolicy a {
+  color: white;
+  font-style: italic;
+}
+
+#floatinglogo {
+  position: absolute;
+  transform: scale(0.3);
+  margin-left: 20px;
+  margin-top: 20px;
+  z-index: 20;
+  filter: drop-shadow(0 0 0.75rem rgb(var(--black)));
+border-radius:  min(calc(30vw / 15.2), calc(30 * 951px / 1520));;
+}
+#floatinglogo > * {
+  margin: 0;
+  position: absolute;
+}
+#floatinglogo a {
+  color: white;
+  text-decoration: none;
+}
