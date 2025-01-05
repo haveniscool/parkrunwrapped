@@ -68,7 +68,6 @@ if (runcheck1 && runcheck2) {
       "Utøver-ID": ["no"],
       "Numer uczestnika": ["pl"],
     }
-    // Initialize with empty strings if no value is set
     let [name, id] = ["", ""]
 
     let parkrunIDName = Object.keys(parkrunIDs).find((id) =>
@@ -266,15 +265,14 @@ const getRandomTimeComparison = (timeInMinutes) => {
     { "you could've watched The Muppet Movie": 97 }
   ];
 
-  // Ensure there's always at least one valid comparison by filtering
   const validComparisons = times
     .map((item) => {
       const [text, value] = Object.entries(item)[0];
       return { text, value: Math.round(timeInMinutes / value) };
     })
-    .filter(({ value }) => value > 0);  // Make sure we always have a positive value
+    .filter(({ value }) => value > 0);  
 
-  // Pick a random comparison from the filtered list
+  
   return "In that time " + validComparisons
     .map(({ text, value }) => `${text} ${value} times`)
     .at(Math.floor(Math.random() * validComparisons.length));
@@ -373,7 +371,6 @@ const getRandomTimeComparison = (timeInMinutes) => {
 
           const multiplier = (preferences.unit === 0 ? 5 : 3.10686) || 0
 
-          // Extract event times (hours, minutes, seconds)
           const timesArray =
             test(yearresults.map((result) => result.time)) || []
           const hoursArray = test(timesArray.map(({ hours }) => hours)) || []
@@ -387,29 +384,27 @@ const getRandomTimeComparison = (timeInMinutes) => {
 
 const getBadge = (index, badge) => {
   const result = userresults.results[index];
-  // Check if result exists and if the year matches preferences.year
+  
   if (result && (preferences.year === 0 || result.date.getFullYear() === preferences.year)) {
-    return badge;  // Return badge if conditions are met
+    return badge;  
   }
-  return null;  // Return null if conditions aren't met
+  return null;  
 };
 
-// Sort results by date
 const sortedResults = userresults.results.sort((a, b) => {
-  return new Date(a.date) - new Date(b.date); // Sort in ascending order (earliest date first)
+  return new Date(a.date) - new Date(b.date); 
 });
 
-// Running badges for specific indices
 let runningBadges = test(
-  [9, 24, 49, 99, 249, 499, 999] // List of indices to check
-    .map((index) => getBadge(index, `${index + 1}r`)) // Map through indices and get the badges
-    .filter(Boolean), // Filter out any null values
+  [9, 24, 49, 99, 249, 499, 999] 
+    .map((index) => getBadge(index, `${index + 1}r`)) 
+    .filter(Boolean), 
 ) || [];
 
-console.log(runningBadges); // For debugging purposes
 
 
-          // Parkrun stats
+
+          
           const parkrunsattended = test(yearresults.length) || 0
           const locationsattended =
             test(new Set(getOneKey(yearresults, "event")).size) || 0
@@ -454,7 +449,7 @@ let comparison = " "
                   eventObj.time.seconds,
                 ),
               ),
-            ) || [] // Fallback to empty array if 'test' doesn't return anything
+            ) || [] 
 
           const fastestTotalMinutes =
             totalMinutesArray.length > 0
@@ -472,13 +467,11 @@ let comparison = " "
               ) === fastestTotalMinutes,
           ) || { event: "unknown", date: new Date(0) }
 
-          // Destructure with default values for safety
           const {
             event: fastestparkrunlocation = "",
             date: fastestEventDate = 0,
           } = fastestEvent
 
-          // Calculate the fastest time in hours, minutes, and seconds
           const fastestTime = [
             Math.floor(fastestTotalMinutes / 60), // Hours
             Math.floor(fastestTotalMinutes % 60), // Minutes
@@ -494,7 +487,6 @@ let comparison = " "
               ? test(fastestEventDate.toLocaleDateString("en-US")) || ""
               : ""
 
-          // Distance and badge list
           const totaldistance =
             test(Math.round(yearresults.length * multiplier)) || 0
             
@@ -509,23 +501,18 @@ let comparison = " "
 
 
 
-// Function to add lower-level badges
 const addLowerLevelBadges = (badges) => {
-  // Create a set for faster lookups
   const badgeSet = new Set(badges);
   const resultBadges = [...badges];
 
   badges.forEach((badge) => {
     if (badge.includes("v")) {
-      // Extract the numeric part of the badge (e.g., "1000" from "1000v")
       const value = parseInt(badge, 10);
 
-      // Check which lower-level badges need to be added
       const lowerBadges = ["500v", "250v", "100v", "50v", "25v", "10v"];
       lowerBadges.forEach((lowerBadge) => {
         const lowerValue = parseInt(lowerBadge, 10);
 
-        // Add the lower badge if the value is smaller and not already added
         if (value > lowerValue && !badgeSet.has(lowerBadge)) {
           resultBadges.push(lowerBadge);
         }
@@ -536,19 +523,14 @@ const addLowerLevelBadges = (badges) => {
   return resultBadges;
 };
 
-// Add lower-level badges if any
 badges = addLowerLevelBadges(badges);
 if (!preferences.showbadges) {
-  // Filter out "10v" and "10r" badges
   badges = badges.filter((badge) => badge !== "10v" && badge !== "10r");
 }
-// Now, badges contains the desired array including lower-level badges for "v" badges
 
 
-// Now, badges contains the desired filtered array
 
-          const debugging = false
-          if (debugging) {
+          if (false) {
 console.log({multiplier, parkrunsattended, locationsattended, topparkrun, topparkrunattendance, fastestagegrade, avgagegrade, totalminutes, comparison, fastestEvent, fastestparkrunlocation, fastestTime, fastestparkrundate, totaldistance, badges, preferences})
 console.log(preferences.watermark)
 }
@@ -652,9 +634,8 @@ console.log(preferences.watermark)
               const wrapper = document.createElement("div")
               wrapper.innerHTML = htmlString
               const element = wrapper.firstElementChild
-element.style.position = 'relative'; // Ensure positioning is relative for children to be positioned correctly
+element.style.position = 'relative'; 
 
-              // Create the watermark footer and append it
               const footer = document.createElement("div")
    let footertext = `${preferences.watermark.name && userresults.name ? userresults.name : ""} ${preferences.watermark.ids && userresults.id ? userresults.id: ""}`;
 if (measureTextWidth(footertext, "35px Gabarito") > widthelement) footertext = "";
@@ -670,7 +651,6 @@ if (measureTextWidth(footertext, "35px Gabarito") > widthelement) footertext = "
               element.appendChild(header)
               if (!element) return reject("Failed to create DOM element.")
 
-              // Set the element's dimensions
               element.style.width = `${heightelement}px`
               element.style.height = `${heightelement}px`
               element.style.top = "-999999999px"
@@ -770,7 +750,6 @@ function createCarousel() {
 
   let imagesLoaded = 0
 
-  // Promise for each image to track when all are loaded
   Promise.all(
     vars.map((content) =>
       htmlToImage(content)
@@ -780,15 +759,12 @@ function createCarousel() {
           img.style = "width: 100%; height: auto; object-fit: contain; object-position: center;"
           imagesWrapper.appendChild(img)
 
-          // Increment counter when an image is loaded
           img.onload = () => {
             imagesLoaded++
-            // Check if all images are loaded
             if (imagesLoaded === vars.length) {
-              // All images are loaded, proceed
               
               carousel.appendChild(imagesWrapper)
-                            circle.remove(); // Remove loading message once images are done
+                            circle.remove();
 
             }
           }
@@ -798,7 +774,6 @@ function createCarousel() {
   )
 const stylebutton = "position: absolute; padding: 10px; color: #fff; border: 0; font-size: 16px; cursor: pointer; border-radius: 5px; transition: transform .2s ease;"
 
-  // Carousel buttons and other UI elements
   const createButton = (text, position, onClick) => {
     const button = document.createElement("button")
     button.textContent = text
@@ -842,7 +817,6 @@ const stylebutton = "position: absolute; padding: 10px; color: #fff; border: 0; 
   closeButton.onmouseleave = () =>
     (closeButton.style.transform = "scale(1)")
 
-  // Download button
   const downloadButton = document.createElement("button")
   downloadButton.textContent = "Download"
   downloadButton.style = stylebutton + " top: 10px; left: 10px; background: rgba(0, 0, 0, .7);"
