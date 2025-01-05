@@ -651,7 +651,7 @@ console.log(preferences.watermark)
       ${badges
         .map(
           (item) =>
-            `<div id="badgeelem" badge="${item}" style="font-family: 'Montserrat', sans-sans-serif; line-height: 1.5; text-align: center; box-sizing: border-box; vertical-align: middle; display: inline-block; font-size: 0; margin: 0;"></div>`,
+            `<div id="badgeelem" badge="${item}" style="font-family: 'Montserrat', sans-serif; line-height: 1.5; text-align: center; box-sizing: border-box; vertical-align: middle; display: inline-block; font-size: 0; margin: 0;"></div>`,
         )
         .join("")} </div></div> `
 
