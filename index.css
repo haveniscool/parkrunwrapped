@@ -239,7 +239,11 @@ body {
   align-items: center;
   margin: 0;
   width: 100%;
+  font-size: min(calc(80vw / 15.2), calc(80 * 951px / 1520));
+  color: var(--hot-pink);
+  font-weight: 900;
 }
+
 
 
 /* footer */
