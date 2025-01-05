@@ -1,4 +1,31 @@
 function startWrapped() {
+	          const style = document.createElement('style');
+style.innerHTML = `
+  .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate 2s linear infinite;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 6px solid rgba(0, 0, 0, 0.3);
+    border-top-color: #000;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Gabarito:wght@400..900&family=Lexend:wght@100..900&display=swap');
+`;
+
+document.head.appendChild(style);
 const isrunning = document.body.querySelector("#isrunning")
 let runcheck1 = true
 
@@ -701,32 +728,7 @@ badges.forEach(badge => {
               document.head.appendChild(script)
             })
           }
-          const style = document.createElement('style');
-style.innerHTML = `
-  .circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: rotate 2s linear infinite;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 6px solid rgba(0, 0, 0, 0.3);
-    border-top-color: #000;
-  }
 
-  @keyframes rotate {
-    0% {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
-  }
-`;
-
-document.head.appendChild(style);
 
 function createCarousel() {
   const carouselContainer = document.createElement("div")
