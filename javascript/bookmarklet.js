@@ -383,22 +383,33 @@ const getRandomTimeComparison = (timeInMinutes) => {
               },
             }
 
-            const getAmountComparison = (a, b) =>
-              a > 0 && b > 0 ? (a > b ? a / b : b / a) : 1
-            const allEntries = Object.entries(comparison).flatMap(
-              ([cat, items]) =>
-                Object.entries(items).map(([name, value]) => ({
-                  category: cat,
-                  name,
-                  value,
-                })),
-            )
-            const randomEntry =
-              allEntries.length > 0
-                ? allEntries[Math.floor(Math.random() * allEntries.length)]
-                : { category: "unknown", name: "unknown", value: 1 }
-            return `That's ${getAmountComparison(distance, randomEntry.value).toFixed(2)} times the ${randomEntry.category}${randomEntry.category === "distance" ? " from " : " of "}${randomEntry.name}`
-          }
+  const getAmountComparison = (a, b) => {
+    if (a <= 0 || b <= 0) return 1;
+    return a > b ? a / b : b / a;
+  };
+
+  const allEntries = Object.entries(comparison).flatMap(
+    ([cat, items]) =>
+      Object.entries(items).map(([name, value]) => ({
+        category: cat,
+        name,
+        value,
+      }))
+  );
+
+  const randomEntry =
+    allEntries.length > 0
+      ? allEntries[Math.floor(Math.random() * allEntries.length)]
+      : { category: "unknown", name: "unknown", value: 1 };
+
+  const comparisonResult = getAmountComparison(distance, randomEntry.value);
+
+  console.log("Comparison Ratio:", comparisonResult);
+
+  return `That's ${comparisonResult.toFixed(2)} times the ${randomEntry.category}${
+    randomEntry.category === "distance" ? " from " : " of "
+  }${randomEntry.name}`;
+};
 
           const multiplier = (preferences.unit === 0 ? 5 : 3.10686) || 0
 
