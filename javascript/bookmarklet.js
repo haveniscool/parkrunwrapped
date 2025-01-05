@@ -727,15 +727,15 @@ badges.forEach(badge => {
                   quality: 10,
                 })
                   .then((canvas) => {
+			  
                     document.body.removeChild(element)
-			  setTimeout(() => {
-				  canvas.toBlob(function(blob) {
-  const url = URL.createObjectURL(blob);
-					                      resolve(canvas.toDataURL())
+canvas.toBlob(function(blob) {
 
+		
+	  const url = URL.createObjectURL(blob);
+		resolve(url)
 }, 'image/png');
 
-			  }, 200)
                   })
                   .catch((error) => {
                     console.error("Error during html2canvas rendering:", error)
