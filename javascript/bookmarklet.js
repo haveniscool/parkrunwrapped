@@ -729,7 +729,12 @@ badges.forEach(badge => {
                   .then((canvas) => {
                     document.body.removeChild(element)
 			  setTimeout(() => {
-                    resolve(canvas.toDataURL())
+				  canvas.toBlob(function(blob) {
+  const url = URL.createObjectURL(blob);
+					                      resolve(canvas.toDataURL())
+
+}, 'image/png');
+
 			  }, 200)
                   })
                   .catch((error) => {
