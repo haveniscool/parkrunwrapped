@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1144)"><rect width="1000" height="1000" fill="#181a39"></rect><g transform="matrix(1.1741682974559686,0,0,1.1741682974559686,200,200)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="511" height="511"><svg width="511" height="511" viewBox="0 0 511 511" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M189.959 255.94H255.731C274.407 255.94 288.414 251.677 297.752 243.151C307.496 234.625 312.368 222.242 312.368 206.002C312.368 189.356 307.496 176.77 297.752 168.244C288.414 159.718 274.407 155.455 255.731 155.455H189.35L216.146 131.704V463H105.917V48.271H259.385C292.271 48.271 321.097 54.361 345.863 66.541C370.629 78.315 389.914 95.976 403.718 119.524C417.522 142.666 424.424 171.492 424.424 206.002C424.424 240.512 417.522 269.541 403.718 293.089C389.914 316.231 370.629 333.892 345.863 346.072C321.097 357.846 292.271 363.733 259.385 363.733H189.959V255.94Z" fill="url(#paint0_linear_444_168)"></path>
-<defs>
-<linearGradient id="paint0_linear_444_168" x1="0" y1="255.5" x2="511" y2="255.5" gradientUnits="userSpaceOnUse">
-<stop offset="0.385" stop-color="#FFA300"></stop>
-<stop offset="1" stop-color="#E6224B"></stop>
-</linearGradient>
-<clipPath id="SvgjsClipPath1144"><rect width="1000" height="1000" x="0" y="0" rx="350" ry="350"></rect></clipPath></defs>
-</svg></svg></g></g></svg>
