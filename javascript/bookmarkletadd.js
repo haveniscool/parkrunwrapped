@@ -1,38 +1,17 @@
-window.addEventListener("load", () => {
-  // Fetch the current version from the server
-  fetch("https://haveniscool.github.io/parkrunwrapped/version.json")
-    .then((res) => (res.ok ? res.json() : Promise.reject("Fetch failed")))
-    .then(
-      (data) => {
-        // Compare the fetched version with the current one
-        if (bookmarkletVersion !== data.currentversion) {
-          const update = confirm(
-            "Bookmarklet is out of date. Do you want to update it to the most current version?"
-          );
-          if (update) {
-            open("https://haveniscool.github.io/parkrunwrapped/", "_blank");
-          }
-        }
-      }
-    )
-    .catch((error) => {
-      console.error("Error fetching version:", error);
-      alert("Failed to check for bookmarklet update. Please try again later.");
-    });
-
-  // Dynamically add the script to the page
-  let script = document.createElement("script");
-  script.src =
-    "https://haveniscool.github.io/parkrunwrapped/javascript/bookmarklet.js";
-
-  // Handle script loading failure
-  script.onerror = () => {
-    const report = window.confirm("Error 001: Script failed. Report?");
-    if (report) {
-      window.open("https://form.jotform.com/parkrunwrapped/errorreport");
+window.addEventListener("load", (event) => {
+    document.getElementById("gobutton").onclick = function () {
+        const parkrunid = document.getElementById("parkrunid").value
+    if (parkrunid.length == 0) {
+        const errormessage = document.getElementById("errormessage")
+        errormessage.classList += "show";
+    } else {
+    const sendto = document.getElementById("countries").value
+    window.open(`https://www.${sendto}/parkrunner/${parkrunid}/5k`)
+}   
     }
-  };
 
-  // Append the script to the body
-  document.body.appendChild(script);
-});
+    const bookmarklet = "javascript:(function()%7Bconst%20bookmarkletVersion%20%3D%20%221.0%22%3Bfetch(%22https%3A%2F%2Fhaveniscool.github.io%2Fparkrunwrapped%2Fversion.json%22)%20.then((res)%20%3D%3E%20(res.ok%20%3F%20res.json()%20%3A%20Promise.reject(%22Fetch%20failed%22)))%20.then(%20(data)%20%3D%3E%20%7B%20if%20(bookmarkletVersion%20!%3D%3D%20data.currentversion)%20%7B%20const%20update%20%3D%20confirm(%20%22Bookmarklet%20is%20out%20of%20date.%20Do%20you%20want%20to%20update%20it%20to%20the%20most%20current%20version%3F%22%20)%3B%20if%20(update)%20%7B%20open(%22https%3A%2F%2Fhaveniscool.github.io%2Fparkrunwrapped%2F%22%2C%20%22_blank%22)%3B%20%7D%20%7D%20%7D%20)%20.catch((error)%20%3D%3E%20%7B%20console.error(%22Error%20fetching%20version%3A%22%2C%20error)%3B%20alert(%22Failed%20to%20check%20for%20bookmarklet%20update.%20Please%20try%20again%20later.%22)%3B%20%7D)%3B%20let%20script%20%3D%20document.createElement(%22script%22)%3B%20script.src%20%3D%20%22https%3A%2F%2Fhaveniscool.github.io%2Fparkrunwrapped%2Fjavascript%2Fbookmarklet.js%22%3B%20script.onerror%20%3D%20()%20%3D%3E%20%7B%20const%20report%20%3D%20window.confirm(%22Error%20001%3A%20Script%20failed.%20Report%3F%22)%3B%20if%20(report)%20%7B%20window.open(%22https%3A%2F%2Fform.jotform.com%2Fparkrunwrapped%2Ferrorreport%22)%3B%20%7D%20%7D%3B%20document.body.appendChild(script)%3B%7D)()%3B"
+    document.getElementById("bookmarklet").href = bookmarklet
+    
+    })
+    
