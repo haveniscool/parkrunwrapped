@@ -66,7 +66,35 @@ if (!runcheck2) {
 }
 
 if (runcheck1 && runcheck2) {
-window.alert("Due to a bug in Safari, Firefox, and Chrome Mobile, some actions required to run this program cannot be performed. Chrome Desktop, however, works fine. If you're using any of these affected browsers, please switch to Chrome Desktop or another supported browser to continue.");
+function getBrowser() {
+  const ua = navigator.userAgent;
+  if (ua.includes("Firefox")) return "Firefox";
+  if (ua.includes("Safari") && !ua.includes("Chrome")) return "Safari";
+  if (ua.includes("Chrome") && ua.includes("Mobile")) return "Chrome Mobile";
+  return "Other";
+}
+
+function createToast(content) {
+  const el = document.createElement('div');
+  el.style = 'visibility:hidden; min-width:250px; margin-left:-125px; background-color:#333; color:#fff; text-align:center; border-radius:2px; padding:16px; position:fixed; z-index:9999; left:50%; bottom:30px; font-size:17px; opacity:0; transition:opacity 0.5s;';
+  el.innerText = content;
+  document.body.appendChild(el);
+
+  setTimeout(() => { el.style.visibility = 'visible'; el.style.opacity = '1'; }, 100);
+  setTimeout(() => { el.style.opacity = '0'; setTimeout(() => document.body.removeChild(el), 500); }, 4000);
+}
+
+function handleBrowser() {
+  const browser = getBrowser();
+  const message = browser === "Firefox" || browser === "Safari" || browser === "Chrome Mobile"
+    ? 'Due to bugs in Safari, Firefox, and Chrome Mobile, certain actions may not work properly. If you are affected use Chrome Desktop for the best experience.'
+    : 'Some actions may not work correctly on Safari, Firefox, or Chrome Mobile. If you are affected use Chrome Desktop or another browser for best experience.';
+
+  browser === "Firefox" || browser === "Safari" || browser === "Chrome Mobile" ? alert(message) : createToast(message);
+}
+
+handleBrowser();
+	
 	const test = (t) => t ?? null
   const isrunningnow = Object.assign(document.createElement("div"), {
     id: "isrunning",
