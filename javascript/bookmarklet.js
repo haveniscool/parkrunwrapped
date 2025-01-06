@@ -66,7 +66,7 @@ if (!runcheck2) {
 }
 
 if (runcheck1 && runcheck2) {
-	window.alert("Due to a bug in Safari's code and Firefox's, it is impossible to perform some of the actions requiered to run this program. This is also the case for Chrome Mobile, but not Desktop. If you are using any of those browsers you have to use a different search engine like chrome.")
+window.alert("Due to a bug in Safari, Firefox, and Chrome Mobile, some actions required to run this program cannot be performed. Chrome Desktop, however, works fine. If you're using any of these affected browsers, please switch to Chrome Desktop or another supported browser to continue.");
 	const test = (t) => t ?? null
   const isrunningnow = Object.assign(document.createElement("div"), {
     id: "isrunning",
