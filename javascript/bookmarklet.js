@@ -715,7 +715,7 @@ if (measureTextWidth(footertext, `35px 'gabarito', sans-serif;`) > widthelement)
               footer.innerText = footertext
               const header = document.createElement("div")
               header.innerText =
-                "Unofficial Parkrun Wrapped  • www.parkrunwrapped.com"
+                "Unofficial Parkrun Wrapped  • parkrunwrapped.havenline.art"
               header.style = `color: #fff; font-family: 'Climate Crisis' sans-serif; font-size: 25px; opacity: .3; position: absolute; top: 10px; text-align: center; width: 300%`
               element.appendChild(header)
               if (!element) return reject("Failed to create DOM element.")
