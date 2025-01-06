@@ -727,21 +727,21 @@ badges.forEach(badge => {
                   cacheBust: false,
                   quality: 10,
                 })
-                  .then((canvas) => {
-			  
-                    document.body.removeChild(element)
-			  setTimeout(() => {
-                    resolve(canvas.toDataURL())
-				  canvas.toBlob(function(blob) {
-  const url = URL.createObjectURL(blob);
-					                      resolve(canvas.toDataURL())
-}, 'image/png');
-			  }, 200)
-                  })
-                  .catch((error) => {
-                    console.error("Error during html2canvas rendering:", error)
-                    reject(error)
-                  })
+.then((canvas) => {
+  document.body.removeChild(element);
+  canvas.toBlob(function(blob) {
+    const reader = new FileReader();
+    reader.onloadend = function() {
+      const dataUrl = reader.result;
+      resolve(dataUrl);
+    };
+    reader.readAsDataURL(blob); 
+  }, 'image/png');
+})
+.catch((error) => {
+  console.error("Error during html2canvas rendering:", error);
+  reject(error);
+})
               }
 
               script.onerror = () => reject("Failed to load html2canvas.")
