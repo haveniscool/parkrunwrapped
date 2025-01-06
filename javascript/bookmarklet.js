@@ -729,14 +729,7 @@ badges.forEach(badge => {
                 })
 .then((canvas) => {
   document.body.removeChild(element);
-  canvas.toBlob(function(blob) {
-    const reader = new FileReader();
-    reader.onloadend = function() {
-      const dataUrl = reader.result;
-      resolve(dataUrl);
-    };
-    reader.readAsDataURL(blob); 
-  }, 'image/png');
+ resolve(canvas.toDataUrl()
 })
 .catch((error) => {
   console.error("Error during html2canvas rendering:", error);
