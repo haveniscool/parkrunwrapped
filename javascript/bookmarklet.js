@@ -715,7 +715,7 @@ if (measureTextWidth(footertext, `35px 'gabarito', sans-serif;`) > widthelement)
               footer.innerText = footertext
               const header = document.createElement("div")
               header.innerText =
-                "Unofficial Parkrun Wrapped  • parkrunwrapped.havenline.art"
+                "Unofficial Parkrun Wrapped  • haveniscool.github.io/parkrunwrapped"
               header.style = `color: #fff; font-family: 'Climate Crisis' sans-serif; font-size: 25px; opacity: .3; position: absolute; top: 10px; text-align: center; width: 300%`
               element.appendChild(header)
               if (!element) return reject("Failed to create DOM element.")
@@ -726,7 +726,7 @@ if (measureTextWidth(footertext, `35px 'gabarito', sans-serif;`) > widthelement)
 
  const badges = element.querySelectorAll("#badgeelem");
 badges.forEach(badge => {
-  const imageUrl = `https://parkrunwrapped.havenline.art/images/badges/${badge.getAttribute("badge")}.svg`;
+  const imageUrl = `https://haveniscool.github.io/parkrunwrapped/images/badges/${badge.getAttribute("badge")}.svg`;
   Object.assign(badge.style, {
     backgroundImage: `url(${imageUrl})`,
     backgroundSize: "190px 190px",
